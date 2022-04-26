@@ -14,6 +14,7 @@
 
 <body>
     <div id="app">
+        <!-- Inizia green -->
         <div class="green"></div>
         <div class="container">
             <div class="row">
@@ -27,6 +28,7 @@
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
                 </div>
+                <!-- Inizia azul -->
                 <div class="azul">
                     <div class="avarSelected">
                         <img src="./img/avatar_1.jpg" alt="">
@@ -38,6 +40,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Iinizia yellow -->
             <div class="row2">
                 <div class="yellow">
                     <div class="notifiche">
@@ -67,15 +71,25 @@
                             </div>
                             <div class="ora">
                                 <small>12.00</small>
-                            </div>
+                            </div>   
                         </div>
-
-
                     </div>
                 </div>
+
+                <!-- Inizia red -->
                 <div class="red">
                     <div class="messaggi">
-                        <div class="msgRight">
+                        <div :class="user.status == 'sent'? 'msgRight' : 'msgLeft'" v-for="(user, index) in contacts[active].messages">
+                            <div :class="user.status == 'sent'? 'msgSent' : 'msgReceived'">
+                                {{user.message}}
+                                <div class="textLeft">
+                                    <small v-if="user.status == 'sent'">15.30</small>
+                                    <small v-else="user.sent !== 'sent'">16.15</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- <div class="msgRight">
                             <div class="msgSent">
                                 <p>Hai portato a spasso il cane?</p>
                                 <div class="textLeft">
@@ -97,7 +111,7 @@
                                     <small>15.15</small>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="write">
                         <div style="padding: 0px 30px;">
