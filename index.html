@@ -88,8 +88,8 @@
                             <div :class="user.status == 'sent'? 'msgSent' : 'msgReceived'">
                                 {{user.message}}
                                 <div class="textLeft">
-                                    <small v-if="user.status == 'sent'">15.30</small>
-                                    <small v-else="user.sent !== 'sent'">16.15</small>
+                                    <small v-if="user.status == 'sent'">{{user.date}}</small>
+                                    <small v-else="user.sent !== 'sent'">{{user.date}}</small>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                             <i class="fa-regular fa-face-smile"></i>
                         </div>
                         <div class="containerInput">
-                            <input type="text" class="no-outline" placeholder="Scrivi un messaggio">
+                                <input type="text"  @keyup.enter="addToMessage" v-model="newMesage.message" class="no-outline" placeholder="Scrivi un messaggio">
                         </div>
                         <div style="padding: 0px 30px;">
                             <i class="fa-solid fa-microphone"></i>

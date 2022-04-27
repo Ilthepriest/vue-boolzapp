@@ -3,6 +3,12 @@ const app = new Vue({
     data:{
 
         active:0,
+        listNewMessage:[],
+        newMesage: {
+            date: new Date().toLocaleString(),
+            message: "",
+            status: "sent",
+          },
 
         contacts: [
             {
@@ -172,6 +178,27 @@ const app = new Vue({
     methods:{
         clickUser(i){
             this.active = i
-        }
+        },
+
+
+        addToMessage(){
+            this.contacts[this.active].messages.push(this.newMesage);
+            setTimeout(function(){
+                const messaggioDiRisposta = {
+                    date: new Date().toLocaleString(),
+                    message: "Ok",
+                    status: "received",
+                  };
+                  app.contacts[app.active].messages.push(messaggioDiRisposta)
+            }, 1000)
+
+            app.newMesage = {
+                date: new Date().toLocaleString(),
+                message: "",
+                status: "sent",
+              }
+        },
     }
+
+    
 })
