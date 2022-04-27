@@ -14,13 +14,14 @@
 
 <body>
     <div id="app">
-        <!-- Inizia green -->
-        <div class="green"></div>
+        <!-- Inizia top -->
+        <div class="top"></div>
         <div class="container">
             <div class="row">
                 <div class="violet">
                     <div class="avatar_io">
                         <img src="./img/avatar_io.jpg" alt="">
+                        <span>Sofia</span>
                     </div>
                     <div class="iconsRight">
                         <i class="fa-solid fa-circle-notch"></i>
@@ -28,10 +29,14 @@
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
                 </div>
-                <!-- Inizia azul -->
-                <div class="azul">
+                <!-- Inizia user top -->
+                <div class="userTop">
                     <div class="avarSelected">
-                        <img src="./img/avatar_1.jpg" alt="">
+                        <img :src="'./img/avatar' + contacts[active].avatar + '.jpg'" alt="">
+                        <div>
+                            <span>{{contacts[active].name}}</span>
+                            <small>Ultimo accesso oggi alle 12:00</small>
+                        </div>
                     </div>
                     <div class="iconsRight">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -41,9 +46,9 @@
                 </div>
             </div>
 
-            <!-- Iinizia yellow -->
+            <!-- Iinizia lista contatti -->
             <div class="row2">
-                <div class="yellow">
+                <div class="listContacts">
                     <div class="notifiche">
                         <div class="squareWhite">
                             <i class="fa-solid fa-bell-slash"></i>
@@ -62,7 +67,7 @@
                         </div>
                     </div>
                     <div class="users">
-                        <div class="user" v-for="(user, index) in contacts">
+                        <div class="user" :class="index === active ? 'active' : ''" v-for="(user, index) in contacts" @click="clickUser(index)">
                             <img :src="'./img/avatar'+user.avatar+'.jpg'" alt="">
                             <div class="name">
                                 {{user.name}}
@@ -76,8 +81,8 @@
                     </div>
                 </div>
 
-                <!-- Inizia red -->
-                <div class="red">
+                <!-- Inizia chat messages -->
+                <div class="chatMessages">
                     <div class="messaggi">
                         <div :class="user.status == 'sent'? 'msgRight' : 'msgLeft'" v-for="(user, index) in contacts[active].messages">
                             <div :class="user.status == 'sent'? 'msgSent' : 'msgReceived'">
@@ -88,31 +93,9 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- <div class="msgRight">
-                            <div class="msgSent">
-                                <p>Hai portato a spasso il cane?</p>
-                                <div class="textLeft">
-                                    <small>15.30</small>
-                                </div>
-                            </div>
-                            <div class="msgSent">
-                                <p>Ricordati di stendere i panni</p>
-                                <div class="textLeft">
-                                    <small>15.30</small>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="msgLeft">
-                            <div class="msgReceived">
-                                <p>Tutto fatto !</p>
-                                <div class="textLeft">
-                                    <small>15.15</small>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
+
+                    <!-- Inizia write chat -->
                     <div class="write">
                         <div style="padding: 0px 30px;">
                             <i class="fa-regular fa-face-smile"></i>

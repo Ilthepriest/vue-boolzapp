@@ -170,6 +170,8 @@ const app = new Vue({
     },
 
     methods:{
-
+        clickUser(i){
+            this.active = i
+        }
     }
 })
