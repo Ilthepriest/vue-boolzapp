@@ -4,6 +4,7 @@ const app = new Vue({
 
         active:0,
         listNewMessage:[],
+        searchInput:"",
         newMesage: {
             date: new Date().toLocaleString(),
             message: "",
@@ -198,7 +199,16 @@ const app = new Vue({
                 status: "sent",
               }
         },
-    }
 
-    
+        selezione(user, i) {
+            const nome = user.name.toLowerCase();
+            const searchInput = this.searchInput.toLowerCase();
+            if (!nome.includes(searchInput)) {
+              this.contacts[i].visible = false;
+            } else {
+              this.contacts[i].visible = true;
+            }
+            return this.contacts[i].visible;
+          },
+    }
 })

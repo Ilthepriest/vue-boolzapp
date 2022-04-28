@@ -63,11 +63,11 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                         <div class="squareInput">
-                            <input type="text" class="no-outline" placeholder="Cerca o inizia una nuova chat">
+                            <input type="text" class="no-outline" v-model="searchInput" placeholder="Cerca o inizia una nuova chat">
                         </div>
                     </div>
                     <div class="users">
-                        <div class="user" :class="index === active ? 'active' : ''" v-for="(user, index) in contacts" @click="clickUser(index)">
+                        <div class="user" :class="index === active ? 'active' : ''" v-for="(user, index) in contacts" @click="clickUser(index)" v-if="selezione(user, index)">
                             <img :src="'./img/avatar'+user.avatar+'.jpg'" alt="">
                             <div class="name">
                                 {{user.name}}
